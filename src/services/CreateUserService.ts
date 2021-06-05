@@ -1,29 +1,26 @@
 import User from '../models/User';
+import { getCustomRepository } from 'typeorm';
 import UsersRepository from '../repositories/UsersRepository';
 
 interface Request{
     createDate: Date; 
-    updateDate: Date;
+    updateDate: Date; 
     name: string; 
     email: string; 
     senha: string;
 }
 
 class CreateUserService{
-    private usersRepository: UsersRepository;
-
-    constructor(usersRepository: UsersRepository){
-        this.usersRepository = usersRepository;
-    }
-
-    public execute({createDate, updateDate, name, email, senha}: Request){
-        const findUserInSameEmail = this.usersRepository.findByEmail(email);
+    public async execute({createDate, updateDate, name, email, senha}: Request): Promise<User>{
+        const usersRepository = getCustomRepository(UsersRepository);
+        
+        const findUserInSameEmail = await usersRepository.findByEmail(email);
 
         if(findUserInSameEmail){
             throw Error('Este email já foi cadastrado!');
         }
 
-        const user = this.usersRepository.create({
+        const user = usersRepository.create({
             createDate: createDate,
             updateDate: updateDate,
             name, 
@@ -31,7 +28,9 @@ class CreateUserService{
             senha
         });
 
-        return user;
+        await usersRepository.save(user);
+
+        return user; 
     }
 }
 

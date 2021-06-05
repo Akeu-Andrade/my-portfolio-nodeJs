@@ -1,38 +1,14 @@
-import User from '../models/User'
+import User from '../models/User';
+import { EntityRepository, Repository } from 'typeorm';
 
-interface CreateUserDTO{
-    createDate: Date; 
-    updateDate: Date;
-    name: string; 
-    email: string; 
-    senha: string;
-}
+@EntityRepository(User)
+class UsersRepository extends Repository<User>{
+    public async findByEmail(email: string): Promise<User | null> {
+        const findUser = await this.findOne({
+            where: { email },
+        });
 
-class UsersRepository {
-    private users: User[]; 
-
-    constructor(){
-        this.users = [];
-    }
-
-    public all(): User[] {
-        return this.users;
-    }
-
-    public findByEmail(email: string): User | null {
-        const findEmail = this.users.find(
-            user => (user.email === email)
-        );
-
-        return findEmail || null;
-    }
-
-    public create({createDate, updateDate, name, email, senha}: CreateUserDTO): User {
-        const user = new User({createDate, updateDate, name, email, senha});
-
-        this.users.push(user);
-
-        return user;
+        return findUser || null;
     }
 }
 
