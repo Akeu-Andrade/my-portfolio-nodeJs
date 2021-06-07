@@ -16,46 +16,50 @@ export default class CreateUsers1622756099904 implements MigrationInterface {
                         {
                             name: 'name',
                             type: 'varchar',
-                            isNullable: true,
                         },
                         
                         {
                             name: 'email',
                             type: 'varchar',
-                            isUnique: true,
-                            isNullable: true,
                         },
                         {
                             name: 'password',
                             type: 'varchar',
-                            isNullable: true,
                         },
                         {
                             name: 'whatsappProfileUrl',
                             type: 'varchar',
+                            isNullable: true,
                         },
                         {
                             name: 'linkedinProfileUrl',
                             type: 'varchar',
+                            isNullable: true,
                         },
                         {
                             name: 'twitterProfileUrl',
                             type: 'varchar',
+                            isNullable: true,
                         },{
                             name: 'instagramProfileUrl',
                             type: 'varchar',
+                            isNullable: true,
                         },{
                             name: 'bitbucketProfileUrl',
                             type: 'varchar',
+                            isNullable: true,
                         },{
                             name: 'gitlabProfileUrl',
                             type: 'varchar',
+                            isNullable: true,
                         },{
                             name: 'githubProfileUrl',
                             type: 'varchar',
+                            isNullable: true,
                         },{
                             name: 'surname',
                             type: 'varchar',
+                            isNullable: true,
                         },{
                             name: 'profession',
                             type: 'varchar',

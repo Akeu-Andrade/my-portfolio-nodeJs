@@ -3,15 +3,24 @@ import {
     Column, 
     PrimaryGeneratedColumn, 
     CreateDateColumn, 
-    UpdateDateColumn 
+    UpdateDateColumn, 
+    ManyToOne,
+    JoinColumn
 } from 'typeorm';
+
+import User from './User';
 
 @Entity('projects')
 class Project {
     @PrimaryGeneratedColumn('uuid')
     id: string;
 
+    @Column()
     user_id: string;
+
+    @ManyToOne(()=> User)
+    @JoinColumn({name: 'user_id'})
+    user: User;
 
     @Column()
     link: string;

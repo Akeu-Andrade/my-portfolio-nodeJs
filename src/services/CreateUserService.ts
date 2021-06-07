@@ -2,16 +2,14 @@ import User from '../models/User';
 import { getCustomRepository } from 'typeorm';
 import UsersRepository from '../repositories/UsersRepository';
 
-interface Request{
-    createDate: Date; 
-    updateDate: Date; 
+interface Request{ 
     name: string; 
     email: string; 
-    senha: string;
+    password: string;
 }
 
 class CreateUserService{
-    public async execute({createDate, updateDate, name, email, senha}: Request): Promise<User>{
+    public async execute({name, email, password}: Request): Promise<User>{
         const usersRepository = getCustomRepository(UsersRepository);
         
         const findUserInSameEmail = await usersRepository.findByEmail(email);
@@ -21,11 +19,9 @@ class CreateUserService{
         }
 
         const user = usersRepository.create({
-            createDate: createDate,
-            updateDate: updateDate,
             name, 
             email,
-            senha
+            password,
         });
 
         await usersRepository.save(user);

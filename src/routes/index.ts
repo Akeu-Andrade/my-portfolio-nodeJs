@@ -1,8 +1,10 @@
 import {Router} from 'express';
-import usersRoutes from './user.routes';
+import usersRouter from './user.routes';
+import projectsRoute from './project.routes';
 
-const routes = Router();
+const router = Router();
 
-routes.use('/users', usersRoutes);
+router.use('/users', usersRouter);
+router.use('/projects', projectsRoute);
 
-export default routes;
+export default router;

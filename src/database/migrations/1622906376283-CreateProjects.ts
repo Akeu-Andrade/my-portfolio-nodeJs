@@ -17,24 +17,25 @@ export class CreateProjects1622906376283 implements MigrationInterface {
                     {
                         name: 'user_id',
                         type: 'uuid',
-                        isNullable: true,
                     },
                     {
                         name: 'title',
                         type: 'varchar',
-                        isNullable: true,
                     },
                     {
                         name: 'link',
                         type: 'varchar',
+                        isNullable: true,
                     },
                     {
                         name: 'image',
                         type: 'varchar',
+                        isNullable: true,
                     },
                     {
                         name: 'description',
                         type: 'varchar',
+                        isNullable: true,
                     },
                     {
                         name: 'createDate',
