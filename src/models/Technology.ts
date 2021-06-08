@@ -3,10 +3,13 @@ import {
     Column, 
     PrimaryGeneratedColumn, 
     CreateDateColumn, 
-    UpdateDateColumn 
+    UpdateDateColumn, 
+    JoinColumn,
+    OneToMany
 } from 'typeorm';
+import ProjectTechnology from './ProjectTechnology';
 
-@Entity('projects')
+@Entity('technologys')
 class Project {
     @PrimaryGeneratedColumn('uuid')
     id: string;

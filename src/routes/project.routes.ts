@@ -27,4 +27,3 @@ projectsRoutes.post('/', async (request, response)=> {
 })
 
 export default projectsRoutes;
-
