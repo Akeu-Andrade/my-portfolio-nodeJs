@@ -1,19 +1,27 @@
-import { Router } from 'express';
+import { request, response, Router } from 'express';
+import multer from 'multer';
+import uploudConfig from '../config/uploud';
+
 import { getRepository } from 'typeorm';
 import Project from '../models/Project';
 
 import CreateProjectService from '../services/CreateProjectService';
 
-const projectsRoutes = Router();
+import ensureAuthenticated from '../middlewares/ensureAuthenticated';
 
-projectsRoutes.get('/', async (request, response) => {
+const projectsRouter = Router();
+const uploud = multer(uploudConfig);
+
+//projectsRouter.use(ensureAuthenticated);
+
+projectsRouter.get('/', async (request, response) => {
     const projectsRepository = getRepository(Project);
     const projects = await projectsRepository.find();
 
     return response.json(projects);
 })
 
-projectsRoutes.post('/', async (request, response)=> {
+projectsRouter.post('/', ensureAuthenticated, async (request, response)=> {
     try{
         const { user_id, link, image, title, description } = request.body;
 
@@ -26,4 +34,9 @@ projectsRoutes.post('/', async (request, response)=> {
     }
 })
 
-export default projectsRoutes;
+projectsRouter.patch('/imagem', ensureAuthenticated, uploud.single('image'), async (request, response)=> {
+    console.log(request.file);
+    return response.json({ok: true});
+})
+
+export default projectsRouter;
