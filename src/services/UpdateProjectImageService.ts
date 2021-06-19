@@ -5,7 +5,7 @@ import fs from 'fs';
 import uploudConfig from '../config/uploud';
 import Project from '../models/Project';
 import User from '../models/User';
-import UsersRepository from '../repositories/UsersRepository';
+import AppError from '../errors/AppError';
 
 interface Request {
     user_id: string;
@@ -19,7 +19,7 @@ class UpdateProjectImageService {
         const usersRepository = getRepository(User);
         const user = await usersRepository.findOne(user_id);
         if (!user) {
-            throw new Error('Erro na autenticação, você não está logado!.')
+            throw new AppError('Erro na autenticação, você não está logado!.', 401);
         }
 
         const projectsRepository = getRepository(Project);

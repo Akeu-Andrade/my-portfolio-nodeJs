@@ -23,35 +23,28 @@ projectsRouter.get('/', async (request, response) => {
 })
 
 projectsRouter.post('/', ensureAuthenticated, async (request, response)=> {
-    try{
-        const { user_id, link, image, title, description } = request.body;
 
-        const createProjectService = new CreateProjectService();
+    const { user_id, link, image, title, description } = request.body;
 
-        const project = await createProjectService.execute({ user_id, link, image, title, description })
-        return response.json(project);
-    } catch (err) {
-        return response.status(400).json({ error: err.message });
-    }
+    const createProjectService = new CreateProjectService();
+
+    const project = await createProjectService.execute({ user_id, link, image, title, description })
+    return response.json(project);
 })
 
 projectsRouter.patch('/imagem', 
     ensureAuthenticated, 
     uploud.single('image'),
     async (request, response)=> {
-        try{
-            const UpdateProjectImage = new UpdateProjectImageService();
-            const project = await UpdateProjectImage.execute({
-                user_id: request.user.id,
-                project_id: request.body.project_id,
-                imageFilename: request.file.filename,
-            });
+        const UpdateProjectImage = new UpdateProjectImageService();
+        const project = await UpdateProjectImage.execute({
+            user_id: request.user.id,
+            project_id: request.body.project_id,
+            imageFilename: request.file.filename,
+        });
 
-            console.log(project)
-            return response.json(project);
-        }catch (err){
-            return response.status(400).json({ error: err.message });
-        }
+        console.log(project)
+        return response.json(project);
     },
 );
 
