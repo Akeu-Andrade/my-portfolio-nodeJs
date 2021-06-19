@@ -6,6 +6,7 @@ import { getRepository } from 'typeorm';
 import Project from '../models/Project';
 
 import CreateProjectService from '../services/CreateProjectService';
+import UpdateProjectImageService from '../services/UpdateProjectImageService';
 
 import ensureAuthenticated from '../middlewares/ensureAuthenticated';
 
@@ -34,9 +35,24 @@ projectsRouter.post('/', ensureAuthenticated, async (request, response)=> {
     }
 })
 
-projectsRouter.patch('/imagem', ensureAuthenticated, uploud.single('image'), async (request, response)=> {
-    console.log(request.file);
-    return response.json({ok: true});
-})
+projectsRouter.patch('/imagem', 
+    ensureAuthenticated, 
+    uploud.single('image'),
+    async (request, response)=> {
+        try{
+            const UpdateProjectImage = new UpdateProjectImageService();
+            const project = await UpdateProjectImage.execute({
+                user_id: request.user.id,
+                project_id: request.body.project_id,
+                imageFilename: request.file.filename,
+            });
+
+            console.log(project)
+            return response.json(project);
+        }catch (err){
+            return response.status(400).json({ error: err.message });
+        }
+    },
+);
 
 export default projectsRouter;
