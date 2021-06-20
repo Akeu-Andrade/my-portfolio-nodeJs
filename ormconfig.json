@@ -1,10 +1,10 @@
 {
     "type":"postgres",
-    "host":"localhost",
+    "host":"ec2-52-4-111-46.compute-1.amazonaws.com",
     "port": 5432,
-    "username": "postgres",
-    "password": "dockerroot",
-    "database": "portfolio",
+    "username": "onwagwplknepzg",
+    "password": "7032b91ebcf7dcf51d1b28e5fd1de32c4d5abbd5d7721c25ed078a85c8054bb2",
+    "database": "d2gap8ruhbocr2",
     "entities": [
         "./src/models/*.ts"
     ],
