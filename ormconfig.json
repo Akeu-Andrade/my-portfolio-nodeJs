@@ -5,6 +5,8 @@
     "username": "onwagwplknepzg",
     "password": "7032b91ebcf7dcf51d1b28e5fd1de32c4d5abbd5d7721c25ed078a85c8054bb2",
     "database": "d2gap8ruhbocr2",
+    "connectionString": "connectionString",
+    "ssl": { "rejectUnauthorized": false },
     "entities": [
         "./src/models/*.ts"
     ],
