@@ -3,15 +3,27 @@
   "version": "1.0.0",
   "main": "index.js",
   "license": "MIT",
+  "type" : "commonjs",
   "scripts": {
-    "build": "babel src --extensions \"js,.ts\" --out-dir dist --copy-files",
+    "build": "babel src --extensions \".js,.ts\" --out-dir dist --copy-files",
     "dev:server": "ts-node-dev --inspect --transpile-only --ignore-watch node_modules src/server.ts",
     "start": "node dist/server.js",
     "typeorm": "ts-node-dev ./node_modules/typeorm/cli.js",
-    "prestart": "babel src --extensions \"js,.ts\" --out-dir dist --copy-files"
+    "prestart": "babel src --extensions \".js,.ts\" --out-dir dist --copy-files"
   },
+
   "dependencies": {
+    "@babel/cli": "^7.14.5",
+    "@babel/core": "^7.14.6",
+    "@babel/node": "^7.14.7",
+    "@babel/plugin-proposal-class-properties": "^7.14.5",
+    "@babel/plugin-proposal-decorators": "^7.14.5",
+    "@babel/preset-env": "^7.14.7",
+    "@babel/preset-typescript": "^7.14.5",
     "@types/express": "^4.17.12",
+    "babel-loader": "^8.2.2",
+    "babel-plugin-module-resolver": "^4.1.0",
+    "babel-plugin-transform-typescript-metadata": "^0.3.2",
     "bcryptjs": "^2.4.3",
     "crypto-browserify": "^3.12.0",
     "date-fns": "^2.22.1",
@@ -24,16 +36,8 @@
     "pg": "^8.6.0",
     "reflect-metadata": "^0.1.13",
     "typeorm": "^0.2.34",
-    "uuidv4": "^6.2.8",
-    "@babel/cli": "^7.14.5",
-    "@babel/core": "^7.14.6",
-    "@babel/node": "^7.14.7",
-    "@babel/plugin-proposal-class-properties": "^7.14.5",
-    "@babel/plugin-proposal-decorators": "^7.14.5",
-    "@babel/preset-env": "^7.14.7",
-    "@babel/preset-typescript": "^7.14.5",
- "babel-plugin-module-resolver": "^4.1.0",
-    "babel-plugin-transform-typescript-metadata": "^0.3.2"
+    "update": "^0.7.4",
+    "uuidv4": "^6.2.8"
   },
   "devDependencies": {
     "@types/bcryptjs": "^2.4.2",
@@ -43,3 +47,4 @@
     "typescript": "^4.3.2"
   }
 }
+
