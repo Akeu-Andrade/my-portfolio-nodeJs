@@ -1,12 +1,9 @@
-{
+module.exports = {
     "type":"postgres",
-    "host":"HOST",
-    "port": 5432,
-    "username": "USERNAME",
-    "password": "SENHA",
-    "database": "DATABASE",
-    "connectionString": "connectionString",
-    "ssl": { "rejectUnauthorized": false },
+    "url": process.env.DATABASE_URL,
+    
+    // "connectionString": "connectionString",
+    // "ssl": { "rejectUnauthorized": false },
     "entities": [
         "./dist/models/*.js"
     ],
